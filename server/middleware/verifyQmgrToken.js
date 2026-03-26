@@ -1,7 +1,7 @@
 const AdminSession = require('../models/AdminSession');
 
 const verifyQmgrToken = async (req, res, next) => {
-    const token = req.cookies.qmgr_token;
+    const token = req.cookies.qmgr_token || req.headers['x-qmgr-token'] || null;
 
     // Always return 404 — never reveal the route exists
     if (!token) {

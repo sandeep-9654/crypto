@@ -10,6 +10,14 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true);
 
     const checkAuth = useCallback(async () => {
+        // If no token in localStorage, skip auth check
+        const token = localStorage.getItem('auth_token');
+        if (!token) {
+            setUser(null);
+            setLoading(false);
+            return;
+        }
+
         try {
             // Run both checks in parallel for speed
             const [teamRes, adminRes] = await Promise.allSettled([
@@ -28,6 +36,8 @@ export const AuthProvider = ({ children }) => {
                 setUser({ role: 'admin' });
             } else {
                 setUser(null);
+                localStorage.removeItem('auth_token');
+                localStorage.removeItem('qmgr_token');
             }
         } catch {
             setUser(null);
@@ -42,6 +52,9 @@ export const AuthProvider = ({ children }) => {
 
     const login = async (teamName, password) => {
         const res = await api.post('/auth/login', { teamName, password });
+        if (res.data.token) {
+            localStorage.setItem('auth_token', res.data.token);
+        }
         setUser({
             teamName,
             approvalStatus: res.data.approvalStatus,
@@ -53,12 +66,21 @@ export const AuthProvider = ({ children }) => {
 
     const adminLogin = async (username, password) => {
         const res = await api.post('/auth/admin/login', { username, password });
+        if (res.data.token) {
+            localStorage.setItem('auth_token', res.data.token);
+        }
+        if (res.data.qmgrToken) {
+            localStorage.setItem('qmgr_token', res.data.qmgrToken);
+        }
         setUser({ username, role: 'admin' });
         return res.data;
     };
 
     const register = async (data) => {
         const res = await api.post('/auth/register', data);
+        if (res.data.token) {
+            localStorage.setItem('auth_token', res.data.token);
+        }
         setUser({
             teamName: data.teamName,
             approvalStatus: 'PENDING',
@@ -72,6 +94,8 @@ export const AuthProvider = ({ children }) => {
         try {
             await api.post('/auth/logout');
         } catch { }
+        localStorage.removeItem('auth_token');
+        localStorage.removeItem('qmgr_token');
         setUser(null);
     };
 

@@ -98,6 +98,7 @@ exports.register = async (req, res) => {
 
     res.status(201).json({
         message: 'REGISTRATION_SUCCESSFUL',
+        token,
         team: {
             teamName: team.teamName,
             approvalStatus: 'PENDING',
@@ -141,6 +142,7 @@ exports.login = async (req, res) => {
 
     res.json({
         message: 'LOGIN_SUCCESSFUL',
+        token,
         approvalStatus: team.approvalStatus,
         lockoutStatus: team.lockoutStatus,
         redirect,
@@ -188,6 +190,7 @@ exports.refreshToken = async (req, res) => {
 
     res.json({
         message: 'TOKEN_REFRESHED',
+        token,
         approvalStatus: team.approvalStatus,
         lockoutStatus: team.lockoutStatus
     });
@@ -230,6 +233,8 @@ exports.adminLogin = async (req, res) => {
 
     res.json({
         message: 'ADMIN_LOGIN_SUCCESSFUL',
+        token,
+        qmgrToken,
         username: admin.username
     });
 };
