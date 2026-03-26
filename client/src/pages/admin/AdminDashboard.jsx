@@ -197,8 +197,17 @@ const AdminDashboard = () => {
                             })}
 
                             <div className="pt-3 border-t border-terminal-border">
-                                <a href={`${process.env.REACT_APP_API_URL || 'http://localhost:5001/api'}/admin/export`}
-                                    className="btn-cyan text-xs no-underline" target="_blank" rel="noopener noreferrer">EXPORT_CSV</a>
+                                <button onClick={async () => {
+                                    try {
+                                        const res = await api.get('/admin/export', { responseType: 'blob' });
+                                        const url = window.URL.createObjectURL(new Blob([res.data]));
+                                        const a = document.createElement('a');
+                                        a.href = url;
+                                        a.download = 'cryptohunt_results.csv';
+                                        a.click();
+                                        window.URL.revokeObjectURL(url);
+                                    } catch { alert('Export failed'); }
+                                }} className="btn-cyan text-xs">EXPORT_CSV</button>
                             </div>
                         </div>
                     </TerminalCard>

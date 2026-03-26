@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../utils/api';
-import { io } from 'socket.io-client';
 import GlitchText from '../components/GlitchText';
 import TerminalCard from '../components/TerminalCard';
 import Leaderboard from '../components/Leaderboard';
@@ -10,16 +9,12 @@ const PublicLeaderboard = () => {
     const [teams, setTeams] = useState([]);
 
     useEffect(() => {
-        api.get('/leaderboard').then(res => setTeams(res.data.leaderboard)).catch(() => { });
-
-        const socketUrl = process.env.REACT_APP_SOCKET_URL || 'http://localhost:5000';
-        const socket = io(socketUrl, { transports: ['websocket', 'polling'] });
-
-        socket.on('leaderboard:update', (data) => {
-            setTeams(data.map((t, i) => ({ ...t, rank: i + 1 })));
-        });
-
-        return () => socket.disconnect();
+        const fetchLeaderboard = () => {
+            api.get('/leaderboard').then(res => setTeams(res.data.leaderboard)).catch(() => { });
+        };
+        fetchLeaderboard();
+        const interval = setInterval(fetchLeaderboard, 10000);
+        return () => clearInterval(interval);
     }, []);
 
     return (

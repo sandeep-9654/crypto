@@ -248,7 +248,7 @@ exports.adminLogout = (req, res) => {
 
 // POST /api/admin/logout-qmgr
 exports.logoutQmgr = async (req, res) => {
-    const token = req.cookies.qmgr_token;
+    const token = req.cookies.qmgr_token || req.headers['x-qmgr-token'] || null;
     if (token) {
         await AdminSession.findOneAndUpdate(
             { qmgrToken: token },
