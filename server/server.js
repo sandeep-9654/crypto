@@ -82,6 +82,10 @@ const initSocketHandler = require('./socket/socketHandler');
 initSocketHandler(io);
 
 // ─── ROUTES ──────────────────────────────────────────────────
+app.get('/', (req, res) => {
+    res.json({ service: 'Cryptography Hunt API', status: 'running' });
+});
+
 app.get('/api/health', (req, res) => {
     res.json({ status: 'OK', timestamp: new Date().toISOString() });
 });
