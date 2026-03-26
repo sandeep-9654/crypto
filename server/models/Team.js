@@ -14,7 +14,7 @@ const teamSchema = new mongoose.Schema({
     passwordHash: { type: String, required: true, select: false },
     participants: {
         type: [participantSchema],
-        validate: [arr => arr.length >= 2 && arr.length <= 4, 'Team must have 2-4 participants']
+        validate: [arr => arr.length >= 1 && arr.length <= 3, 'Team must have 1-3 participants']
     },
 
     // Approval System

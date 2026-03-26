@@ -44,7 +44,7 @@ const Landing = () => (
             >
                 <TerminalCard title="[EVENT RULES]" className="max-w-3xl mx-auto mb-12">
                     <div className="space-y-3 text-sm">
-                        <p className="text-electric-cyan">{'>'} Teams of 2-4 members</p>
+                        <p className="text-electric-cyan">{'>'} Teams of 1-3 members</p>
                         <p className="text-electric-cyan">{'>'} Multiple rounds of increasing difficulty</p>
                         <p className="text-electric-cyan">{'>'} 3 tab switches = automatic lockout</p>
                         <p className="text-electric-cyan">{'>'} Hints available after 3 wrong attempts</p>

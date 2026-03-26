@@ -49,8 +49,8 @@ exports.register = async (req, res) => {
     }
 
     // Validate participants
-    if (!participants || !Array.isArray(participants) || participants.length < 2 || participants.length > 4) {
-        return res.status(400).json({ error: 'INVALID_PARTICIPANTS', message: 'Team must have 2-4 participants' });
+    if (!participants || !Array.isArray(participants) || participants.length < 1 || participants.length > 3) {
+        return res.status(400).json({ error: 'INVALID_PARTICIPANTS', message: 'Team must have 1-3 participants' });
     }
 
     for (const p of participants) {

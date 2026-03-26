@@ -11,20 +11,19 @@ const Register = () => {
     const [teamName, setTeamName] = useState('');
     const [password, setPassword] = useState('');
     const [participants, setParticipants] = useState([
-        { name: '', registerNumber: '', year: '1', department: '', section: '' },
         { name: '', registerNumber: '', year: '1', department: '', section: '' }
     ]);
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
     const addParticipant = () => {
-        if (participants.length < 4) {
+        if (participants.length < 3) {
             setParticipants([...participants, { name: '', registerNumber: '', year: '1', department: '', section: '' }]);
         }
     };
 
     const removeParticipant = (index) => {
-        if (participants.length > 2) {
+        if (participants.length > 1) {
             setParticipants(participants.filter((_, i) => i !== index));
         }
     };
@@ -75,8 +74,8 @@ const Register = () => {
 
                         <div className="border-t border-terminal-border pt-4">
                             <div className="flex justify-between items-center mb-4">
-                                <span className="text-electric-cyan text-xs">PARTICIPANTS ({participants.length}/4):</span>
-                                {participants.length < 4 && (
+                                <span className="text-electric-cyan text-xs">PARTICIPANTS ({participants.length}/3):</span>
+                                {participants.length < 3 && (
                                     <button type="button" onClick={addParticipant} className="btn-cyan text-xs px-3 py-1">ADD_MEMBER</button>
                                 )}
                             </div>
@@ -85,7 +84,7 @@ const Register = () => {
                                 <div key={i} className="border border-terminal-border rounded p-4 mb-3">
                                     <div className="flex justify-between items-center mb-3">
                                         <span className="text-neon-green text-xs">MEMBER_{i + 1}</span>
-                                        {participants.length > 2 && (
+                                        {participants.length > 1 && (
                                             <button type="button" onClick={() => removeParticipant(i)} className="text-danger-red text-xs hover:underline">REMOVE</button>
                                         )}
                                     </div>
