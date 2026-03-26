@@ -12,7 +12,7 @@ const CIPHER_TYPES = ['CCS', 'TTT', 'AC', 'GC', 'PCS', 'MORSE', 'CODE'];
 const SystemConsole = () => {
     useQmgrSession();
     const {
-        questions, rounds, loading, fetchQuestions, fetchRounds,
+        questions, rounds, fetchQuestions, fetchRounds,
         createQuestion, updateQuestion, deleteQuestion, reorderQuestions,
         liveSwap, bulkImport, previewQuestion, getAuditLog, uploadImage
     } = useQuestionManager();

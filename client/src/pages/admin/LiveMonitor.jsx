@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import api from '../../utils/api';
 import { useSocket } from '../../context/SocketContext';
 import GlitchText from '../../components/GlitchText';
-import TerminalCard from '../../components/TerminalCard';
 
 const LiveMonitor = () => {
     const { socket } = useSocket();
