@@ -7,7 +7,7 @@ const questionSchema = new mongoose.Schema({
     displayOrder: { type: Number, required: true },
     cipherType: {
         type: String,
-        enum: ['CCS', 'VIG', 'AC', 'PLF', 'PCS', 'MORSE', 'CODE', 'RFC'],
+        enum: ['CCS', 'VIG', 'AC', 'PLF', 'PCS', 'MORSE', 'CODE', 'GC'],
         required: true
     },
     cipherLabel: { type: String, trim: true },

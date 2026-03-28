@@ -12,7 +12,7 @@ const cipherTypes = [
     { type: 'PCS', name: 'Polybius Caesar', desc: 'Number sequence cipher' },
     { type: 'MORSE', name: 'Morse Code', desc: 'Dot-dash encoding' },
     { type: 'CODE', name: 'C Code Output', desc: 'Program output analysis' },
-    { type: 'RFC', name: 'Rail Fence', desc: 'Zigzag transposition' }
+    { type: 'GC', name: 'Grille Cipher', desc: 'Pattern overlay decoding' }
 ];
 
 const Landing = () => (

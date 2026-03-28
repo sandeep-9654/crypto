@@ -73,12 +73,13 @@ const seed = async () => {
             },
             {
                 roundId: round1._id, roundNumber: 1, questionNumber: 4, displayOrder: 4,
-                cipherType: 'VIG',
-                cipherLabel: 'Vigenère Cipher - A polyalphabetic substitution cipher that uses a keyword to shift each letter by a different amount. Method: Use your previous answer (BLOCK) as the key. For each letter, shift backward by the corresponding key letter\'s position (A=0, B=1 ... Z=25).',
-                encryptedText: 'DSOKX',
+                cipherType: 'TTT',
+                cipherLabel: 'Tic-Tac-Toe (Pigpen) Cipher - A geometric simple substitution cipher. Method: Match the grid shapes and dots to the corresponding letters.',
+                encryptedText: 'Each BLOCK in the tic-tac-toe grid hides a letter. Decode the image using the pigpen grid cipher.',
+                imageUrl: 'https://res.cloudinary.com/dqeku8krl/image/upload/v1774500237/Gemini_Generated_Image_djy3ctdjy3ctdjy3_fehp3a.png',
                 correctAnswer: 'CHAIN',
                 hintLetter: 'C',
-                hint: 'Each BLOCK in the grid hides a shift. Use BLOCK as the Vigenère key to decode.',
+                hint: 'Use the tic-tac-toe pigpen cipher. The answer is something links connect to form.',
                 points: 15
             },
             {
@@ -164,12 +165,13 @@ const seed = async () => {
             },
             {
                 roundId: round2._id, roundNumber: 2, questionNumber: 2, displayOrder: 2,
-                cipherType: 'PLF',
-                cipherLabel: 'Playfair Cipher - A digraph substitution cipher that encrypts pairs of letters using a 5x5 key matrix. Method: Build the matrix using CYBER as the key (fill remaining letters A-Z, I/J share one cell). Then decode each letter pair: same row → shift left; same column → shift up; rectangle → swap columns.',
-                encryptedText: 'TGMCKF',
+                cipherType: 'TTT',
+                cipherLabel: 'Tic-Tac-Toe (Pigpen) Cipher - A geometric simple substitution cipher. Method: Match the grid shapes and dots to the corresponding letters.',
+                encryptedText: 'In CYBER security, every system needs one of these. Decode the tic-tac-toe pigpen cipher in the image.',
+                imageUrl: 'https://res.cloudinary.com/dqeku8krl/image/upload/v1774500221/Gemini_Generated_Image_29dwxk29dwxk29dw_sw2do1.png',
                 correctAnswer: 'SHIELD',
                 hintLetter: 'S',
-                hint: 'In CYBER security, every system needs one of these. Use CYBER as the Playfair key. Decode each pair of letters.',
+                hint: 'Use the tic-tac-toe pigpen cipher. The answer is a word for protection.',
                 points: 15
             },
             {

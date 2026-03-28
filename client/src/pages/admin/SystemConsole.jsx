@@ -7,7 +7,7 @@ import GlitchText from '../../components/GlitchText';
 import TerminalCard from '../../components/TerminalCard';
 import CipherBadge from '../../components/CipherBadge';
 
-const CIPHER_TYPES = ['CCS', 'VIG', 'AC', 'PLF', 'PCS', 'MORSE', 'CODE', 'RFC'];
+const CIPHER_TYPES = ['CCS', 'VIG', 'AC', 'PLF', 'PCS', 'MORSE', 'CODE', 'GC'];
 
 const SystemConsole = () => {
     useQmgrSession();
@@ -259,7 +259,7 @@ const SystemConsole = () => {
                                     </div>
                                 </div>
 
-                                {['CCS', 'VIG', 'AC', 'PLF', 'PCS', 'MORSE', 'RFC'].includes(form.cipherType) && (
+                                {['CCS', 'VIG', 'AC', 'PLF', 'PCS', 'MORSE'].includes(form.cipherType) && (
                                     <div>
                                         <label className="text-electric-cyan text-xs block mb-1">Encrypted Text</label>
                                         <textarea value={form.encryptedText} onChange={e => setForm({ ...form, encryptedText: e.target.value })}
@@ -276,6 +276,20 @@ const SystemConsole = () => {
                                 )}
 
 
+                                {form.cipherType === 'GC' && (
+                                    <div>
+                                        <label className="text-electric-cyan text-xs block mb-1">Image URL</label>
+                                        <input type="text" value={form.imageUrl} onChange={e => setForm({ ...form, imageUrl: e.target.value })}
+                                            className="terminal-input text-xs" placeholder="https://..." />
+                                        <input type="file" accept="image/*" className="mt-2 text-xs text-neon-green"
+                                            onChange={async (e) => {
+                                                if (e.target.files[0]) {
+                                                    try { const url = await uploadImage(e.target.files[0]); setForm({ ...form, imageUrl: url }); }
+                                                    catch { alert('Upload failed'); }
+                                                }
+                                            }} />
+                                    </div>
+                                )}
 
                                 <div>
                                     <label className="text-electric-cyan text-xs block mb-1">🔒 CORRECT ANSWER</label>
