@@ -6,12 +6,13 @@ import TerminalCard from '../components/TerminalCard';
 
 const cipherTypes = [
     { type: 'CCS', name: 'Caesar Cipher', desc: 'Shift-based substitution' },
-    { type: 'TTT', name: 'Tic-Tac-Toe', desc: 'Image grid decryption' },
+    { type: 'VIG', name: 'Vigenère Cipher', desc: 'Polyalphabetic substitution' },
     { type: 'AC', name: 'Affine Cipher', desc: 'Mathematical substitution' },
-    { type: 'GC', name: 'Grille Cipher', desc: 'Pattern overlay decoding' },
+    { type: 'PLF', name: 'Playfair Cipher', desc: 'Digraph substitution' },
     { type: 'PCS', name: 'Polybius Caesar', desc: 'Number sequence cipher' },
     { type: 'MORSE', name: 'Morse Code', desc: 'Dot-dash encoding' },
-    { type: 'CODE', name: 'C Code Output', desc: 'Program output analysis' }
+    { type: 'CODE', name: 'C Code Output', desc: 'Program output analysis' },
+    { type: 'RFC', name: 'Rail Fence', desc: 'Zigzag transposition' }
 ];
 
 const Landing = () => (
@@ -53,7 +54,7 @@ const Landing = () => (
                 </TerminalCard>
             </motion.div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3 max-w-5xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3 max-w-5xl mx-auto">
                 {cipherTypes.map((cipher, i) => (
                     <motion.div
                         key={cipher.type}

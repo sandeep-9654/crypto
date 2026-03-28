@@ -73,13 +73,12 @@ const seed = async () => {
             },
             {
                 roundId: round1._id, roundNumber: 1, questionNumber: 4, displayOrder: 4,
-                cipherType: 'TTT',
-                cipherLabel: 'Tic-Tac-Toe (Pigpen) Cipher - A geometric simple substitution cipher. Method: Match the grid shapes and dots to the corresponding letters.',
-                encryptedText: 'Each BLOCK in the tic-tac-toe grid hides a letter. Decode the image using the pigpen grid cipher.',
-                imageUrl: 'https://res.cloudinary.com/dqeku8krl/image/upload/v1774500237/Gemini_Generated_Image_djy3ctdjy3ctdjy3_fehp3a.png',
+                cipherType: 'VIG',
+                cipherLabel: 'Vigenère Cipher - A polyalphabetic substitution cipher that uses a keyword to shift each letter by a different amount. Method: Use your previous answer (BLOCK) as the key. For each letter, shift backward by the corresponding key letter\'s position (A=0, B=1 ... Z=25).',
+                encryptedText: 'DSOKX',
                 correctAnswer: 'CHAIN',
                 hintLetter: 'C',
-                hint: 'Use the tic-tac-toe pigpen cipher. The answer is something links connect to form.',
+                hint: 'Each BLOCK in the grid hides a shift. Use BLOCK as the Vigenère key to decode.',
                 points: 15
             },
             {
@@ -124,13 +123,12 @@ const seed = async () => {
             },
             {
                 roundId: round1._id, roundNumber: 1, questionNumber: 9, displayOrder: 9,
-                cipherType: 'GC',
-                cipherLabel: 'Grille Cipher - A technique for encrypting a plaintext by writing it onto a sheet through a pierced sheet called the grille. Method: Overlay the grille and rotate 90° clockwise, reading one letter at each turn.',
-                encryptedText: 'Place the grille over the letter grid. Rotate clockwise. Read one letter at each 90° turn.',
-                imageUrl: 'https://res.cloudinary.com/dqeku8krl/image/upload/v1774500246/Gemini_Generated_Image_pf543npf543npf54_1_fl9gly.png',
+                cipherType: 'RFC',
+                cipherLabel: 'Rail Fence Cipher - A transposition cipher that writes text in a zigzag pattern across a set number of rails, then reads off each rail in order. Method: Use 3 rails. Write GAET in zigzag, then reconstruct the original word.',
+                encryptedText: 'GAET',
                 correctAnswer: 'GATE',
                 hintLetter: 'G',
-                hint: 'Inside the VAULT is a hidden word. Place the grille, rotate 4 times, collect one letter each turn.',
+                hint: 'Inside the VAULT is a hidden word. Arrange the letters across 3 rails in a zigzag to decode.',
                 points: 20
             },
             {
@@ -165,13 +163,12 @@ const seed = async () => {
             },
             {
                 roundId: round2._id, roundNumber: 2, questionNumber: 2, displayOrder: 2,
-                cipherType: 'TTT',
-                cipherLabel: 'Tic-Tac-Toe (Pigpen) Cipher - A geometric simple substitution cipher. Method: Match the grid shapes and dots to the corresponding letters.',
-                encryptedText: 'In CYBER security, every system needs one of these. Decode the tic-tac-toe pigpen cipher in the image.',
-                imageUrl: 'https://res.cloudinary.com/dqeku8krl/image/upload/v1774500221/Gemini_Generated_Image_29dwxk29dwxk29dw_sw2do1.png',
+                cipherType: 'PLF',
+                cipherLabel: 'Playfair Cipher - A digraph substitution cipher that encrypts pairs of letters using a 5x5 key matrix. Method: Build the matrix using CYBER as the key (fill remaining letters A-Z, I/J share one cell). Then decode each letter pair: same row → shift left; same column → shift up; rectangle → swap columns.',
+                encryptedText: 'TGMCKF',
                 correctAnswer: 'SHIELD',
                 hintLetter: 'S',
-                hint: 'Use the tic-tac-toe pigpen cipher. The answer is a word for protection.',
+                hint: 'In CYBER security, every system needs one of these. Use CYBER as the Playfair key. Decode each pair of letters.',
                 points: 15
             },
             {

@@ -49,9 +49,7 @@ exports.createQuestion = async (req, res) => {
     if (points && (points < 1 || points > 100)) {
         return res.status(400).json({ error: 'INVALID_POINTS' });
     }
-    if (['TTT', 'GC'].includes(cipherType) && !imageUrl) {
-        return res.status(400).json({ error: 'IMAGE_REQUIRED_FOR_TYPE' });
-    }
+
     if (cipherType === 'CODE' && !codeSnippet) {
         return res.status(400).json({ error: 'CODE_SNIPPET_REQUIRED' });
     }
@@ -339,9 +337,7 @@ exports.bulkImport = async (req, res) => {
                 if (!q.correctAnswer) {
                     errors.push({ round: roundData.roundNumber, question: q.questionNumber, error: 'MISSING_CORRECT_ANSWER' });
                 }
-                if (['TTT', 'GC'].includes(q.cipherType) && !q.imageUrl) {
-                    errors.push({ round: roundData.roundNumber, question: q.questionNumber, error: 'IMAGE_REQUIRED_FOR_TYPE' });
-                }
+
                 if (q.cipherType === 'CODE' && !q.codeSnippet) {
                     errors.push({ round: roundData.roundNumber, question: q.questionNumber, error: 'CODE_SNIPPET_REQUIRED' });
                 }

@@ -1,7 +1,7 @@
 module.exports = {
   GRACE_PERIOD_SECONDS: 120,
 
-  CIPHER_TYPES: ['CCS', 'TTT', 'AC', 'GC', 'PCS', 'MORSE', 'CODE'],
+  CIPHER_TYPES: ['CCS', 'VIG', 'AC', 'PLF', 'PCS', 'MORSE', 'CODE', 'RFC'],
 
   LOCK_REASONS: ['TAB_SWITCH', 'CONNECTIVITY_LOSS', 'POWER_LOSS', 'ADMIN_MANUAL'],
 

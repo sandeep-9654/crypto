@@ -317,7 +317,7 @@ body {
   color: #00ff41;
 }
 
-.cipher-badge.TTT {
+.cipher-badge.VIG {
   color: #00e5ff;
 }
 
@@ -325,7 +325,7 @@ body {
   color: #ffb700;
 }
 
-.cipher-badge.GC {
+.cipher-badge.PLF {
   color: #ff6b00;
 }
 
@@ -339,6 +339,10 @@ body {
 
 .cipher-badge.CODE {
   color: #00ff9d;
+}
+
+.cipher-badge.RFC {
+  color: #ff69b4;
 }
 
 /* ─── LOADING SPINNER ──────────────────────────────── */
