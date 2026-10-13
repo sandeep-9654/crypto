@@ -2,7 +2,7 @@
 
 > A real-time competitive cipher-cracking platform with live leaderboards, anti-cheat tab-switch detection, and a hacker-themed UI.
 
-**[Live Demo →](https://cryptography-kits-ten.vercel.app)** *(Alias: https://cryptography-kits-ten.vercel.app)*
+**[Live Demo →](https://cryptography-kits.vercel.app)**
 
 ---
 
