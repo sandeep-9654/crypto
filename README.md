@@ -97,11 +97,13 @@ QMGR_ROUTE_TOKEN=<your_qmgr_token>
 API_QM_PREFIX=v2/sys/qm
 ```
 
-Seed the database with admin account and sample rounds:
+Seed the database with sample rounds and cipher challenges:
 
 ```bash
 npm run seed
 ```
+
+> *(Note: Administrator account setup and credentials are documented in the private reference guide `GUIDE.md`.)*
 
 Start the server:
 
