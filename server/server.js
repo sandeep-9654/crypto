@@ -24,6 +24,20 @@ const server = http.createServer(app);
 // ─── SECURITY MIDDLEWARE ─────────────────────────────────────
 const isProduction = process.env.NODE_ENV === 'production';
 
+const allowedOrigins = [
+    process.env.CLIENT_URL,
+    'https://cryptography-kits.vercel.app',
+    'http://localhost:3000',
+    'http://localhost:5173'
+].filter(Boolean);
+
+const isAllowedOrigin = (origin) => {
+    if (!origin) return true;
+    if (allowedOrigins.includes(origin)) return true;
+    if (origin.endsWith('.vercel.app')) return true;
+    return false;
+};
+
 app.use(helmet({
     contentSecurityPolicy: isProduction ? {
         directives: {
@@ -32,14 +46,20 @@ app.use(helmet({
             styleSrc: ["'self'", "https://fonts.googleapis.com", "'unsafe-inline'"],
             fontSrc: ["'self'", "https://fonts.gstatic.com"],
             imgSrc: ["'self'", "data:", "https://res.cloudinary.com"],
-            connectSrc: ["'self'", process.env.CLIENT_URL || 'http://localhost:3000']
+            connectSrc: ["'self'", ...allowedOrigins, "https://*.vercel.app"]
         }
     } : false,
     hsts: isProduction ? { maxAge: 31536000, includeSubDomains: true } : false
 }));
 
 app.use(cors({
-    origin: process.env.CLIENT_URL || 'http://localhost:3000',
+    origin: (origin, callback) => {
+        if (isAllowedOrigin(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error(`CORS origin not allowed: ${origin}`));
+        }
+    },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization', 'x-qmgr-token']
@@ -70,7 +90,13 @@ app.use('/api/', generalLimiter);
 // ─── SOCKET.IO ───────────────────────────────────────────────
 const io = new Server(server, {
     cors: {
-        origin: process.env.CLIENT_URL || 'http://localhost:3000',
+        origin: (origin, callback) => {
+            if (isAllowedOrigin(origin)) {
+                callback(null, true);
+            } else {
+                callback(new Error(`Socket CORS origin not allowed: ${origin}`));
+            }
+        },
         credentials: true
     }
 });
@@ -86,8 +112,12 @@ app.get('/', (req, res) => {
     res.json({ service: 'Cryptography Hunt API', status: 'running' });
 });
 
+app.get('/health', (req, res) => {
+    res.status(200).json({ status: 'OK', timestamp: new Date().toISOString() });
+});
+
 app.get('/api/health', (req, res) => {
-    res.json({ status: 'OK', timestamp: new Date().toISOString() });
+    res.status(200).json({ status: 'OK', timestamp: new Date().toISOString() });
 });
 
 app.use('/api/auth', require('./routes/auth'));
