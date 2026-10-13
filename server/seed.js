@@ -13,12 +13,12 @@ const seed = async () => {
         // 1. Create default admin
         const existingAdmin = await Admin.findOne({ username: 'admin' });
         if (!existingAdmin) {
-            const hashedPassword = await bcrypt.hash('admin@crypto2025', 12);
+            const hashedPassword = await bcrypt.hash('2026@AdminPass', 12);
             await Admin.create({
                 username: 'admin',
                 passwordHash: hashedPassword
             });
-            console.log('✓ Admin created: admin / admin@crypto2025');
+            console.log('✓ Admin created: admin / 2026@AdminPass');
         } else {
             console.log('⚡ Admin already exists');
         }
@@ -209,7 +209,7 @@ const seed = async () => {
         console.log(`✓ ${round2Questions.length} questions created for Round 2`);
 
         console.log('\n✓ Seed completed successfully!');
-        console.log('  Admin login: admin / admin@crypto2025');
+        console.log('  Admin login: admin / 2026@AdminPass');
         console.log('  Rounds: 2 (Round 1 active, Round 2 locked)');
         console.log(`  Questions: ${round1Questions.length + round2Questions.length} total`);
         console.log('\n  ROUND 1 CHAIN: START → FIVE → BLOCK → CHAIN → LINK → CODE → 7 → VAULT → GATE → OMEGA');
