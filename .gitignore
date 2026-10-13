@@ -22,3 +22,6 @@ Thumbs.db
 
 # Coverage
 coverage/
+
+# Personal interview reference (do not commit)
+GUIDE.md
