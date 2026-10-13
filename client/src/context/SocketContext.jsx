@@ -24,7 +24,11 @@ export const SocketProvider = ({ children }) => {
             return;
         }
 
-        const socketUrl = process.env.REACT_APP_SOCKET_URL || 'http://localhost:5000';
+        const DEFAULT_SOCKET_URL = process.env.NODE_ENV === 'production'
+            ? 'https://cryptography-hunt-api-b4li.onrender.com'
+            : 'http://localhost:5000';
+
+        const socketUrl = process.env.REACT_APP_SOCKET_URL || DEFAULT_SOCKET_URL;
 
         const token = localStorage.getItem('auth_token');
 
