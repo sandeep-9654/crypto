@@ -134,8 +134,48 @@ npm start   # runs on port 3000
 
 ## Deployment
 
-- **Frontend** → [Vercel](https://vercel.com): Set Root Directory to `client/`, framework to Create React App
-- **Backend** → [Render](https://render.com): Uses the included `render.yaml` blueprint. Set env vars in the Render dashboard.
+- **Frontend**: [Vercel](https://cryptography-kits.vercel.app) — Set Root Directory to `client/`, framework to Create React App.
+- **Backend**: [Render](https://cryptography-hunt-api-b4li.onrender.com) — Web service deployed via Render CLI and `render.yaml` blueprint.
+- **Health Check**: `GET /health` (`https://cryptography-hunt-api-b4li.onrender.com/health`) returning `200 OK` for uptime pinging.
+
+### Reproducible Render CLI Deployment
+
+The backend deployment is automated and managed via the Render CLI (`v2.29.0+`) and the `render.yaml` blueprint:
+
+```bash
+# 1. Authenticate with Render
+render login
+
+# 2. Validate blueprint
+render blueprints validate ./render.yaml
+
+# 3. Create and deploy web service
+render services create \
+  --name cryptography-hunt-api \
+  --type web_service \
+  --repo https://github.com/sandeep-9654/crypto \
+  --branch main \
+  --root-directory server \
+  --runtime node \
+  --build-command "npm install" \
+  --start-command "node server.js" \
+  --health-check-path "/health" \
+  --plan free \
+  --auto-deploy \
+  --env-var NODE_ENV=production \
+  --env-var "MONGODB_URI=<your_mongodb_uri>" \
+  --env-var "JWT_SECRET=<your_jwt_secret>" \
+  --env-var "JWT_EXPIRES_IN=8h" \
+  --env-var "CLIENT_URL=https://cryptography-kits.vercel.app" \
+  --env-var "ADMIN_SETUP_KEY=<your_admin_key>" \
+  --env-var "QMGR_ROUTE_TOKEN=<your_qmgr_token>" \
+  --env-var "API_QM_PREFIX=v2/sys/qm" \
+  --confirm \
+  --output json
+
+# 4. Monitor logs & deployment
+render logs --resources <SERVICE_ID> --tail
+```
 
 ## Project Structure
 
