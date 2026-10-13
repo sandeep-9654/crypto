@@ -103,8 +103,6 @@ Seed the database with admin account and sample rounds:
 npm run seed
 ```
 
-> Default admin: `admin` / `2026@AdminPass` — **change this in production**.
-
 Start the server:
 
 ```bash
